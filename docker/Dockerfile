@@ -2,8 +2,6 @@ FROM rocker/shiny:latest
 
 MAINTAINER Andy Pohl "apohl@morgridge.org"
 
-
-
 RUN wget -O- http://neuro.debian.net/lists/jessie.us-ca.full | tee /etc/apt/sources.list.d/neurodebian.sources.list && \
     apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 && \
     apt-get update && \
@@ -15,5 +13,7 @@ RUN Rscript -e "install.packages('shinydashboard')" && \
     Rscript -e "install.packages('oro.nifti');" && \
     Rscript -e "install.packages('brainR');" && \
     Rscript -e "install.packages('fslr');" 
+
+VOLUME /srv/shiny-server/shiny-brain
 
 CMD ["/usr/bin/shiny-server.sh"]
