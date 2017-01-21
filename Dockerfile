@@ -47,8 +47,8 @@ RUN apt-get update \
     && wget --no-verbose "https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubuntu-12.04/x86_64/shiny-server-$SHINY_VERSION-amd64.deb" -O ss-latest.deb \
     && gdebi -n ss-latest.deb \
     && rm -f version.txt ss-latest.deb \
-    && Rscript -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" \
-    && Rscript -e "install.packages('shinydashboard,rgl,misc3d,oro.nifti,brainR,fslr')" \
+    && Rscript -e "install.packages(c('shiny','rmarkdown'))" \
+    && Rscript -e "install.packages(c('shinydashboard','rgl','misc3d','oro.nifti','brainR','fslr'))" \
     && cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/ \
     && wget https://raw.githubusercontent.com/rocker-org/shiny/master/shiny-server.sh \
     && chmod +x shiny-server.sh \
